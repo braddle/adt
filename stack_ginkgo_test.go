@@ -9,19 +9,23 @@ import (
 	. "github.com/onsi/gomega"
 )
 
+var stack *adt.Stack
+
 var _ = Describe("Stack", func() {
+
+	BeforeEach(func() {
+		stack = adt.NewStack()
+	})
+
 	Describe("Emptiness", func() {
 		Context("when the stack does not contain items", func() {
 			It("should be empty", func() {
-				stack := adt.NewStack()
-
 				Expect(stack.IsEmpty()).To(BeTrue())
 			})
 		})
 
 		Context("when the stack contains items", func() {
 			It("should not be empty", func() {
-				stack := adt.NewStack()
 				stack.Push("Red")
 
 				Expect(stack.IsEmpty()).To(BeFalse())
@@ -32,8 +36,6 @@ var _ = Describe("Stack", func() {
 	Describe("Size", func() {
 		Context("When items are added to the stack", func() {
 			It("should keep track of the size", func() {
-				stack := adt.NewStack()
-
 				By("Empty being 0", func() {
 					Expect(stack.Size()).To(BeZero())
 				})
@@ -54,8 +56,6 @@ var _ = Describe("Stack", func() {
 	Describe("Popping", func() {
 		Context("When items are taken off the stack", func() {
 			It("Remove items from the top of the stack", func() {
-
-				stack := adt.NewStack()
 				stack.Push("Red")
 				stack.Push("Blue")
 
@@ -77,7 +77,6 @@ var _ = Describe("Stack", func() {
 			})
 		})
 	})
-
 })
 
 func TestStack(t *testing.T) {
